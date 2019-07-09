@@ -9,20 +9,82 @@ The code is very long and messy. Refactor it according to what you have learned 
 code simplicity and efficiency.
 """
 
+# Dictionaries
+
+dict_text_to_number = {
+                        'one':    1,
+                        'two':    2,
+                        'three':  3,
+                        'four':   4,
+                        'five':   5,
+                        'six':    6,
+                        'seven':  7,
+                        'eight':  8,
+                        'nine':   9,
+                        'zero':   0
+                      }
+
 # screen return
 
-print('Welcome to this calculator!')
+print('Welcome to this calculator!\n')
 print('It can add and subtract whole numbers from zero to five')
 
 # screen inputs
 
-a = input('Please choose your first number (zero to five): ')
-b = input('What do you want to do? plus or minus: ')
-c = input('Please choose your second number (zero to five): ')
+first_value =   input('\nPlease choose your first number (zero to five): ')
+operator =      input('\nWhat do you want to do? plus or minus: ')
+second_value =  input('\nPlease choose your second number (zero to five): ')
+
+# Functions
 
 
+def convert_to_num(value):
+    '''
+    This function transforms a string into its corresponding number.
+    :param value: string
+    :return:  the number corresponding to the string
+    '''
+    value = dict_text_to_number.get(value)
+    return value
 
-if (not a == 'zero' and not a == 'one' and not a == 'two' and not a == 'three' and not a == 'four' and not a == 'five') or (not c == 'zero' and not c == 'one' and not c == 'two' and not c == 'three' and not c == 'four' and not c == 'five') or (not b == 'plus' and not b == 'minus'):
-    print("I am not able to answer this question. Check your input.")
+# Start calculations
 
-print("Thanks for using this calculator, goodbye :)")
+
+if first_value \
+        not in dict_text_to_number.keys() \
+        and second_value \
+        not in dict_text_to_number.keys():
+
+    print("\n\tI am not able to answer this question. Check your input.")
+
+elif operator != 'plus' and operator != 'minus':
+
+    print("\n\tI am not able to answer this question. Check your input.")
+
+else:
+
+    first_value_conversion = convert_to_num(first_value)
+    second_value_conversion = convert_to_num(second_value)
+    print(first_value_conversion)
+    print(second_value_conversion)
+    print(operator)
+    if operator == "plus":
+        result = first_value_conversion + second_value_conversion
+        print("\n\n\t"
+              + first_value.capitalize()
+              + " + "
+              + second_value
+              + " = "
+              + str(result))
+    else:
+        result = first_value_conversion - second_value_conversion
+        print("\n\n\t"
+              + first_value.capitalize()
+              + " - "
+              + second_value
+              + " = "
+              + str(result))
+
+print("\n\nThanks for using this calculator, goodbye :)")
+
+
